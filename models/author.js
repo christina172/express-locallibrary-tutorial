@@ -45,5 +45,15 @@ AuthorSchema.virtual("lifespan").get(function () {
     }
 });
 
+AuthorSchema.virtual("date_of_birth_form").get(function () {
+    // We don't use an arrow function as we'll need the this object
+    return `${DateTime.fromJSDate(this.date_of_birth).toISODate()}`;
+});
+
+AuthorSchema.virtual("date_of_death_form").get(function () {
+    // We don't use an arrow function as we'll need the this object
+    return `${DateTime.fromJSDate(this.date_of_death).toISODate()}`;
+});
+
 // Export model
 module.exports = mongoose.model("Author", AuthorSchema);
